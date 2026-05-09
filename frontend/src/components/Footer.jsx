@@ -51,7 +51,7 @@ const Footer = () => {
           fontSize: '0.85rem'
         }}>
           &copy; {new Date().getFullYear()} FundHappiness. All rights reserved.
-              Developed with kindness 💚 by <a href="https://prateek-yadav17netlify.app/"target="_blank" rel="noopener noreferrer"style={{color:"#24e52eff",fontWeight:"bold"}}>Prateek</a>
+              Developed with kindness 💚 by <a href="https://prateek-yadav17.netlify.app/"target="_blank" rel="noopener noreferrer"style={{color:"#24e52eff",fontWeight:"bold"}}>Prateek</a>
         </div>
       </div>
     </footer>
