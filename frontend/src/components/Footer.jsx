@@ -50,7 +50,8 @@ const Footer = () => {
           color: 'var(--text-muted)',
           fontSize: '0.85rem'
         }}>
-          &copy; {new Date().getFullYear()} FundHappiness. All rights reserved. {" "}{" "} Developed with kindness 💚 by <a href="https://prateek-yadav17.netlify.app/">prateek</a>
+          &copy; {new Date().getFullYear()} FundHappiness. All rights reserved.
+           &nbsp &nbsp Developed with kindness 💚 by <a href="https://prateek-yadav17.netlify.app/">Prateek</a>
         </div>
       </div>
     </footer>
