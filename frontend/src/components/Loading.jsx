@@ -57,7 +57,7 @@ const Loading = () => {
         lineHeight: '1.6',
         fontStyle: 'italic'
       }}>
-        "{quote}"
+        {/* "{quote}" */}
       </p>
 
       <style>
