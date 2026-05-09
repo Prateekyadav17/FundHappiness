@@ -37,18 +37,10 @@ app.use('/api/updates', updateRoutes);
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.use('/images', express.static(path.join(__dirname, '../frontend/public/images')));
 
-// Serve Frontend in Production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-  app.get('(.*)', (req, res) =>
-    res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html'))
-  );
-} else {
-  app.get('/', (req, res) => {
-    res.send('Crowdfunding API is running...');
-  });
-}
+// Base route for testing
+app.get('/', (req, res) => {
+  res.send('FundHappiness API is running...');
+});
 
 // Database connection
 const connectDB = async () => {
