@@ -11,7 +11,7 @@ const ExploreNGOs = () => {
   useEffect(() => {
     const fetchOrgs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/organizations');
+        const res = await axios.get('https://fundhappiness.onrender.com/api/organizations');
         setOrganizations(res.data);
       } catch (error) {
         console.error('Error fetching organizations:', error);

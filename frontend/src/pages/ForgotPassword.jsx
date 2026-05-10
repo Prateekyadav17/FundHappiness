@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     setMessage('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/forgotpassword', { email });
+      const res = await axios.post('https://fundhappiness.onrender.com/api/auth/forgotpassword', { email });
       setMessage('Password reset email sent! Please check your inbox.');
     } catch (err) {
       console.error('Forgot password error:', err);

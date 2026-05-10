@@ -25,14 +25,14 @@ const Dashboard = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         if (user.role === 'organization') {
-          const res = await axios.get('http://localhost:5000/api/organizations/my/org', config);
+          const res = await axios.get('https://fundhappiness.onrender.com/api/organizations/my/org', config);
           setData(res.data);
         } else {
-          const res = await axios.get('http://localhost:5000/api/donations/my/donations', config);
+          const res = await axios.get('https://fundhappiness.onrender.com/api/donations/my/donations', config);
           setData(res.data);
 
           // Fetch followed organizations
-          const profileRes = await axios.get('http://localhost:5000/api/auth/me', config);
+          const profileRes = await axios.get('https://fundhappiness.onrender.com/api/auth/me', config);
           setFollowing(profileRes.data.following || []);
         }
       } catch (error) {
@@ -117,7 +117,7 @@ const Dashboard = () => {
 
                         try {
                           const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                          await axios.put(`http://localhost:5000/api/organizations/${data.organization._id}/payment`, { paymentInfo: data.organization.paymentInfo }, config);
+                          await axios.put(`https://fundhappiness.onrender.com/api/organizations/${data.organization._id}/payment`, { paymentInfo: data.organization.paymentInfo }, config);
                           alert('Payment settings saved successfully!');
                         } catch (err) {
                           alert('Error saving payment settings');

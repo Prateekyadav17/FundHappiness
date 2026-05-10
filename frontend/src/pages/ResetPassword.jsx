@@ -21,7 +21,7 @@ const ResetPassword = () => {
     setError('');
 
     try {
-      await axios.put(`http://localhost:5000/api/auth/resetpassword/${token}`, { password });
+      await axios.put(`https://fundhappiness.onrender.com/api/auth/resetpassword/${token}`, { password });
       alert('Password reset successful! Please log in with your new password.');
       navigate('/login');
     } catch (err) {

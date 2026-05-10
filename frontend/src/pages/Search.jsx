@@ -17,8 +17,8 @@ const Search = () => {
       setLoading(true);
       try {
         const [campRes, orgRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/campaigns'),
-          axios.get('http://localhost:5000/api/organizations')
+          axios.get('https://fundhappiness.onrender.com/api/campaigns'),
+          axios.get('https://fundhappiness.onrender.com/api/organizations')
         ]);
         
         if (query) {

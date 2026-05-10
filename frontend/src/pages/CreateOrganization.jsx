@@ -32,7 +32,7 @@ const CreateOrganization = () => {
         headers: { Authorization: `Bearer ${user.token}` }
       };
 
-      const res = await axios.post('http://localhost:5000/api/organizations', formData, config);
+      const res = await axios.post('https://fundhappiness.onrender.com/api/organizations', formData, config);
       navigate(`/organization/${res.data._id}`);
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong');
@@ -57,8 +57,8 @@ const CreateOrganization = () => {
         } 
       };
       
-      const uploadRes = await axios.post('http://localhost:5000/api/upload', uploadFormData, config);
-      setFormData({ ...formData, image: `http://localhost:5000${uploadRes.data.url}` });
+      const uploadRes = await axios.post('https://fundhappiness.onrender.com/api/upload', uploadFormData, config);
+      setFormData({ ...formData, image: `https://fundhappiness.onrender.com${uploadRes.data.url}` });
       alert('Image uploaded successfully!');
     } catch (error) {
       console.error(error);

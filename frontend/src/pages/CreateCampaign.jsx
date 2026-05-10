@@ -28,7 +28,7 @@ const CreateCampaign = () => {
   useEffect(() => {
     const fetchOrgs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/organizations');
+        const res = await axios.get('https://fundhappiness.onrender.com/api/organizations');
         const userOrgs = res.data.filter(org => org.owner._id === user?._id);
         setOrganizations(userOrgs);
         if (userOrgs.length > 0) {
@@ -57,7 +57,7 @@ const CreateCampaign = () => {
         }
       };
 
-      const res = await axios.post('http://localhost:5000/api/campaigns', { ...formData, gallery }, config);
+      const res = await axios.post('https://fundhappiness.onrender.com/api/campaigns', { ...formData, gallery }, config);
       navigate(`/campaign/${res.data._id}`);
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong');
@@ -82,8 +82,8 @@ const CreateCampaign = () => {
         } 
       };
       
-      const uploadRes = await axios.post('http://localhost:5000/api/upload', uploadFormData, config);
-      setFormData({ ...formData, image: `http://localhost:5000${uploadRes.data.url}` });
+      const uploadRes = await axios.post('https://fundhappiness.onrender.com/api/upload', uploadFormData, config);
+      setFormData({ ...formData, image: `https://fundhappiness.onrender.com${uploadRes.data.url}` });
       alert('Image uploaded successfully!');
     } catch (error) {
       console.error(error);

@@ -25,7 +25,7 @@ const RazorpayCheckout = ({ campaignId, campaignTitle, onSuccess }) => {
       
       // 1. Create order on backend
       const { data: order } = await axios.post(
-        'http://localhost:5000/api/donations/create-order',
+        'https://fundhappiness.onrender.com/api/donations/create-order',
         { amount, campaignId }, 
         config
       );
@@ -55,7 +55,7 @@ const RazorpayCheckout = ({ campaignId, campaignTitle, onSuccess }) => {
         handler: async (response) => {
           try {
             // 3. Record successful donation
-            await axios.post('http://localhost:5000/api/donations/record', {
+            await axios.post('https://fundhappiness.onrender.com/api/donations/record', {
               campaignId,
               amount,
               paymentId: response.razorpay_payment_id
@@ -161,7 +161,7 @@ const CampaignDetails = () => {
 
     const fetchCampaign = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+        const res = await axios.get(`https://fundhappiness.onrender.com/api/campaigns/${id}`);
         setCampaign(res.data);
       } catch (error) {
         console.error('Error fetching campaign', error);

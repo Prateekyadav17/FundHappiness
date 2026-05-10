@@ -45,16 +45,16 @@ const OrganizationProfile = () => {
 
     const fetchOrg = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/organizations/${id}`);
+        const res = await axios.get(`https://fundhappiness.onrender.com/api/organizations/${id}`);
         setData(res.data);
         
         // Fetch updates
-        const updatesRes = await axios.get(`http://localhost:5000/api/updates/organization/${id}`);
+        const updatesRes = await axios.get(`https://fundhappiness.onrender.com/api/updates/organization/${id}`);
         setUpdates(updatesRes.data);
 
         // Fetch donors if owner
         if (user && res.data.organization.owner === user._id) {
-          const donorsRes = await axios.get(`http://localhost:5000/api/donations/organization/${id}`, {
+          const donorsRes = await axios.get(`https://fundhappiness.onrender.com/api/donations/organization/${id}`, {
             headers: { Authorization: `Bearer ${user.token}` }
           });
           setDonors(donorsRes.data);
@@ -82,7 +82,7 @@ const OrganizationProfile = () => {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       
       const { data: order } = await axios.post(
-        'http://localhost:5000/api/donations/create-order',
+        'https://fundhappiness.onrender.com/api/donations/create-order',
         { amount: quickDonateAmount, organizationId: id }, 
         config
       );
@@ -110,7 +110,7 @@ const OrganizationProfile = () => {
         },
         handler: async (response) => {
           try {
-            await axios.post('http://localhost:5000/api/donations/record', {
+            await axios.post('https://fundhappiness.onrender.com/api/donations/record', {
               organizationId: id,
               amount: quickDonateAmount,
               paymentId: response.razorpay_payment_id
@@ -153,7 +153,7 @@ const OrganizationProfile = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const res = await axios.post('http://localhost:5000/api/updates', {
+      const res = await axios.post('https://fundhappiness.onrender.com/api/updates', {
         ...newUpdate,
         organizationId: id
       }, config);
@@ -173,7 +173,7 @@ const OrganizationProfile = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.delete(`http://localhost:5000/api/updates/${updateId}`, config);
+      await axios.delete(`https://fundhappiness.onrender.com/api/updates/${updateId}`, config);
       setUpdates(updates.filter(u => u._id !== updateId));
     } catch (error) {
       console.error('Error deleting update', error);
@@ -184,7 +184,7 @@ const OrganizationProfile = () => {
     if (!user) return navigate('/login');
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const res = await axios.put(`http://localhost:5000/api/organizations/${id}/membership`, {}, config);
+      const res = await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/membership`, {}, config);
       
       const isNowMember = res.data.isMember;
       setData(prev => {
@@ -208,7 +208,7 @@ const OrganizationProfile = () => {
     try {
       const newImages = [...(data.organization.carouselImages || []), imageUrlInput.trim()];
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const res = await axios.put(`http://localhost:5000/api/organizations/${id}/carousel`, { carouselImages: newImages }, config);
+      const res = await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/carousel`, { carouselImages: newImages }, config);
       
       setData(prev => ({
         ...prev,
@@ -238,13 +238,13 @@ const OrganizationProfile = () => {
       };
       
       // 1. Upload to server
-      const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, config);
-      const uploadedUrl = `http://localhost:5000${uploadRes.data.url}`;
+      const uploadRes = await axios.post('https://fundhappiness.onrender.com/api/upload', formData, config);
+      const uploadedUrl = `https://fundhappiness.onrender.com${uploadRes.data.url}`;
 
       // 2. Add to carousel
       const newImages = [...(data.organization.carouselImages || []), uploadedUrl];
       const updateConfig = { headers: { Authorization: `Bearer ${user.token}` } };
-      const res = await axios.put(`http://localhost:5000/api/organizations/${id}/carousel`, { carouselImages: newImages }, updateConfig);
+      const res = await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/carousel`, { carouselImages: newImages }, updateConfig);
       
       setData(prev => ({
         ...prev,
@@ -396,7 +396,7 @@ const OrganizationProfile = () => {
                           onClick={async () => {
                             const newImages = org.carouselImages.filter((_, idx) => idx !== i);
                             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                            const res = await axios.put(`http://localhost:5000/api/organizations/${id}/carousel`, { carouselImages: newImages }, config);
+                            const res = await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/carousel`, { carouselImages: newImages }, config);
                             setData(prev => ({ ...prev, organization: { ...prev.organization, carouselImages: res.data.carouselImages } }));
                           }}
                           style={{ position: 'absolute', top: '-5px', right: '-5px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', fontSize: '10px' }}
@@ -433,7 +433,7 @@ const OrganizationProfile = () => {
                     onClick={async () => {
                       try {
                         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                        await axios.put(`http://localhost:5000/api/organizations/${id}/payment`, { paymentInfo: org.paymentInfo }, config);
+                        await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/payment`, { paymentInfo: org.paymentInfo }, config);
                         alert('Settings saved!');
                       } catch (err) {
                         alert('Error saving settings');
@@ -483,7 +483,7 @@ const OrganizationProfile = () => {
                       try {
                         const config = { headers: { Authorization: `Bearer ${user.token}` } };
                         const finalStats = org.stats?.length > 0 ? org.stats : [{ label: 'Trees Planted', value: '12k+' }, { label: 'Survival Rate', value: '85%' }, { label: 'Villages Reached', value: '50+' }];
-                        await axios.put(`http://localhost:5000/api/organizations/${id}/stats`, { stats: finalStats }, config);
+                        await axios.put(`https://fundhappiness.onrender.com/api/organizations/${id}/stats`, { stats: finalStats }, config);
                         alert('Impact stats updated!');
                       } catch (err) {
                         alert('Error saving stats');

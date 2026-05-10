@@ -26,8 +26,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [campRes, orgRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/campaigns'),
-          axios.get('http://localhost:5000/api/organizations')
+          axios.get('https://fundhappiness.onrender.com/api/campaigns'),
+          axios.get('https://fundhappiness.onrender.com/api/organizations')
         ]);
         setCampaigns(campRes.data.slice(0, 3));
         setOrganizations(orgRes.data.slice(0, 3));
