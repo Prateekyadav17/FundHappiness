@@ -29,35 +29,37 @@ const Loading = () => {
       left: 0,
       zIndex: 9999
     }}>
-      <div className="loading-animation" style={{
-        marginBottom: '40px',
-        animation: 'heartbeat 1.5s infinite ease-in-out'
-      }}>
-        <img src="/logo-green.png" alt="Loading" style={{ height: '120px', width: 'auto' }} />
+      <div className="glass-card">
+        <div className="loading-animation" style={{
+          marginBottom: '40px',
+          animation: 'heartbeat 1.5s infinite ease-in-out'
+        }}>
+          <img src="/logo-green.png" alt="Loading" style={{ height: '120px', width: 'auto' }} />
+        </div>
+        
+        <div style={{
+          color: '#2e7d32',
+          fontSize: '1.5rem',
+          fontWeight: '700',
+          marginBottom: '15px',
+          textAlign: 'center'
+        }}>
+               Loading Please wait.....<br/><br/>
+                  FundHappiness <br/>
+        </div>
+        
+        <p style={{
+          color: '#b40917ff',
+          fontSize: '1.1rem',
+          maxWidth: '400px',
+          textAlign: 'center',
+          padding: '0 20px',
+          lineHeight: '1.6',
+          fontStyle: 'italic'
+        }}>
+          {/* "{quote}" */}
+        </p>
       </div>
-      
-      <div style={{
-        color: '#2e7d32',
-        fontSize: '1.5rem',
-        fontWeight: '700',
-        marginBottom: '15px',
-        textAlign: 'center'
-      }}>
-             Loading Please wait.....<br/><br/>
-                FundHappiness <br/>
-      </div>
-      
-      <p style={{
-        color: '#b40917ff',
-        fontSize: '1.1rem',
-        maxWidth: '400px',
-        textAlign: 'center',
-        padding: '0 20px',
-        lineHeight: '1.6',
-        fontStyle: 'italic'
-      }}>
-        {/* "{quote}" */}
-      </p>
 
       <style>
         {`
