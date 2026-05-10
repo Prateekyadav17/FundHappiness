@@ -17,14 +17,13 @@ const Loading = () => {
   }, []);
 
   return (
-    <div style={{
+    <div className="loading-overlay" style={{
       height: '100vh',
       width: '100vw',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      background: '#f0fdf4', // Very light green
       position: 'fixed',
       top: 0,
       left: 0,

@@ -71,6 +71,17 @@ a:hover {
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
+.loading-overlay {
+  background: rgba(240, 253, 244, 0.75); /* Light green glass */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.4s ease;
+}
+
+[data-theme="dark"] .loading-overlay {
+  background: rgba(18, 24, 18, 0.85); /* Dark glass */
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
